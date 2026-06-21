@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack | Carbon Footprint Insights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>EcoTrack</h1>
+        <p>Understand, track, and reduce your carbon footprint with AI-powered insights.</p>
+    </header>
+
+    <main>
+        <section class="input-section" aria-labelledby="form-heading">
+            <h2 id="form-heading">Calculate Your Impact</h2>
+            <form id="footprint-form">
+                
+                <div class="form-group">
+                    <label for="transport">Miles driven per week:</label>
+                    <input type="number" id="transport" name="transport" min="0" required aria-describedby="transport-hint">
+                    <small id="transport-hint">Include car, motorcycle, or rideshares.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="energy">Monthly electricity bill ($):</label>
+                    <input type="number" id="energy" name="energy" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="diet">Primary Diet Type:</label>
+                    <select id="diet" name="diet" required>
+                        <option value="meat-heavy">Meat-Heavy</option>
+                        <option value="average">Average / Omnivore</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                </div>
+
+                <button type="submit">Generate Personalized Insights</button>
+            </form>
+        </section>
+
+        <section id="results-section" class="hidden" aria-live="polite">
+            <h2>Your Action Plan</h2>
+            <div id="loading-spinner" class="hidden">Analyzing your footprint...</div>
+            <div id="ai-insights"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

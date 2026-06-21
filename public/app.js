@@ -20,7 +20,7 @@ document.getElementById('footprint-form').addEventListener('submit', async (e) =
 
     try {
         // 3. Securely call our backend API
-        const response = await fetch('http://localhost:3000/api/insights', {
+        const response = await fetch('/api/insights', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json' 

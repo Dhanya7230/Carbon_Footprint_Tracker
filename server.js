@@ -110,3 +110,4 @@ app.listen(port, () => {
     console.log(`Secure backend running at http://localhost:${port}`);
 >>>>>>> dc779a0d8ddb38401755bfb334092b85a8e2d035
 });
+module.exports = app;

@@ -6,25 +6,17 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware for Security and Parsing
 app.use(cors());
 app.use(express.json());
-// Serve the frontend static files securely
 app.use(express.static('public'));
 
-// Initialize the Gemini API client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// API Endpoint to handle frontend requests
 app.post('/api/insights', async (req, res) => {
-    // Extract data sent from app.js
     const { transport, energy, diet } = req.body;
 
     try {
-        // We use gemini-1.5-flash for maximum speed and efficiency
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        
-        // Constructing the prompt to enforce problem statement alignment
         const prompt = `
         Act as an expert sustainability consultant. 
         A user has provided the following monthly data for their carbon footprint calculation:
@@ -40,7 +32,6 @@ app.post('/api/insights', async (req, res) => {
         const response = await result.response;
         const text = response.text();
 
-        // Send the AI-generated HTML back to the frontend
         res.json({ insights: text });
     } catch (error) {
         console.error('Gemini API Error:', error);
@@ -48,10 +39,4 @@ app.post('/api/insights', async (req, res) => {
     }
 });
 
-// Start the server (for local testing)
-app.listen(port, () => {
-    console.log(`Secure backend running at http://localhost:${port}`);
-});
-
-// THIS LINE IS CRITICAL FOR VERCEL
 module.exports = app;
